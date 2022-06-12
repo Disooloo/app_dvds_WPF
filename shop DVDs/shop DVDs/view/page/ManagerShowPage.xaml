@@ -1,0 +1,162 @@
+﻿<Page x:Class="shop_DVDs.view.page.ManagerShowPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:shop_DVDs.view.page" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ManagerShowPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="7*"/>
+            <RowDefinition Height="43*"/>
+        </Grid.RowDefinitions>
+        <Grid Name="top">
+            <StackPanel HorizontalAlignment="Left" 
+                        VerticalAlignment="Center"
+                        Margin="50 0 0 0">
+                <DockPanel>
+                    <TextBlock Text="Наименование: " FontSize="30"/>
+                    <TextBlock Text="{Binding Path=title}" FontSize="30" Margin="10 0 0 0"
+                               Foreground="#673AB7"/>
+                </DockPanel>
+
+            </StackPanel>
+            <Border Width="50"
+                    CornerRadius="20"
+                    Height="50"
+                    HorizontalAlignment="Right"
+                    Margin="0 0 50 0">
+                <Border.Background>
+                    <LinearGradientBrush>
+                        <GradientStop Color="#673AB7" Offset="0"/>
+                        <GradientStop Color="#318CE7" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+                <TextBlock HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Text="{Binding Path=C_id}"
+                           Foreground="#fff"
+                           FontSize="30"/>
+            </Border>
+        </Grid>
+        <Grid Grid.Row="1" Name="center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="67*"/>
+                <ColumnDefinition Width="33*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Name="contet">
+                <Border CornerRadius="20">
+                    <materialDesign:Card Margin="10 0 0 100">
+                        <StackPanel Margin="10">
+
+                            <DockPanel Margin="0 0 0 10">
+                                <TextBlock HorizontalAlignment="Left"
+                                           Text="Категория:" FontSize="18"/>
+                                <TextBlock HorizontalAlignment="Right"
+                                           Text="{Binding Path=category}" FontSize="18" FontWeight="Bold"
+                                           Foreground="#673AB7"/>
+                            </DockPanel>
+
+                            <DockPanel Margin="0 0 0 10">
+                                <TextBlock HorizontalAlignment="Left"
+                                           Text="Рейтинг:" FontSize="18"/>
+                                <TextBlock HorizontalAlignment="Right"
+                                           Text="{Binding Path=rating}" FontSize="18" FontWeight="Bold"
+                                           Foreground="#673AB7"/>
+                            </DockPanel>
+
+                            <DockPanel Margin="0 0 0 10">
+                                <TextBlock HorizontalAlignment="Left"
+                                           Text="Поставщик:" FontSize="18"/>
+                                <TextBlock HorizontalAlignment="Right"
+                                           Text="{Binding Path=seller}" FontSize="18" FontWeight="Bold"
+                                           Foreground="#673AB7"/>
+                            </DockPanel>
+
+                            <DockPanel Margin="0 0 0 10">
+                                <TextBlock HorizontalAlignment="Left"
+                                           Text="Стоимость за 1шт:" FontSize="18"/>
+                                <DockPanel HorizontalAlignment="Right">
+                                    <TextBlock Text="{Binding Path=price}" FontSize="18" FontWeight="Bold"
+                                               Foreground="#673AB7"/>
+                                    <TextBlock Text="₽" FontSize="18"
+                                               Margin="5 0 0 0"
+                                               Foreground="#673AB7"/>
+                                </DockPanel>
+                            </DockPanel>
+
+                            <DockPanel Margin="0 0 0 10">
+                                <TextBlock HorizontalAlignment="Left"
+                                           Text="Остаток:" FontSize="18"/>
+                                <TextBlock HorizontalAlignment="Right"
+                                           Text="{Binding Path=inStock}" FontSize="18" FontWeight="Bold"
+                                           Foreground="#673AB7"/>
+                            </DockPanel>
+
+                            <DockPanel Margin="0 0 0 10">
+                                <TextBlock HorizontalAlignment="Left"
+                                           Text="Описание:" FontSize="18"/>
+                                <TextBlock HorizontalAlignment="Right"
+                                           Text="{Binding Path=description}" FontSize="18" FontWeight="Bold"
+                                           Foreground="#673AB7" TextWrapping="Wrap"/>
+                            </DockPanel>
+                        </StackPanel>
+                    </materialDesign:Card>
+                </Border>
+                <DockPanel>
+                    <Button VerticalAlignment="Bottom"
+                        HorizontalAlignment="Left" 
+                        Margin="10"
+                        Name="back"
+                        Click="back_Click"
+                        Style="{DynamicResource MaterialDesignPaperButton}"
+                        >
+                        <StackPanel>
+                            <DockPanel>
+                                <materialDesign:PackIcon VerticalAlignment="Center"
+                                             HorizontalAlignment="Center"
+                                             Kind="Backburger"/>
+                                <TextBlock Text="Назад" VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"/>
+                            </DockPanel>
+                        </StackPanel>
+                    </Button>
+                </DockPanel>
+            </Grid>
+
+            <Grid Name="sellerInfo" Grid.Column="1">
+                <Border CornerRadius="20">
+                    <materialDesign:Card Margin="10 0 0 10">
+                        <DataGrid Name="DBlist" 
+                                  AutoGenerateColumns="False" IsReadOnly="True" 
+                                  ScrollViewer.CanContentScroll="True" 
+                                  ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                  ScrollViewer.HorizontalScrollBarVisibility="Auto">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Поставщик" Width="*" Binding="{Binding Path=C_id}"/>
+                                <DataGridTextColumn Header="Компания" Width="*" Binding="{Binding Path=company}"/>
+                                <DataGridTemplateColumn>
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Content="Подробнее" Name="sellerShow" Click="sellerShow_Click"></Button>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </materialDesign:Card>
+                </Border>
+            </Grid>
+
+
+        </Grid>
+    </Grid>
+</Page>
+
+<!--
+b64->QGRpc29vbG9v
+-->

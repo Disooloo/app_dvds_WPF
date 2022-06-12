@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище appDVDsModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="DVDsDB">
+    <Key>
+      <PropertyRef Name="_id" />
+    </Key>
+    <Property Name="_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="title" Type="nvarchar" MaxLength="100" />
+    <Property Name="description" Type="text" />
+    <Property Name="category" Type="nvarchar" MaxLength="100" />
+    <Property Name="rating" Type="int" />
+    <Property Name="seller" Type="int" />
+    <Property Name="price" Type="nvarchar" MaxLength="5" />
+    <Property Name="inStock" Type="int" />
+  </EntityType>
+  <EntityType Name="sellersDB">
+    <Key>
+      <PropertyRef Name="_id" />
+    </Key>
+    <Property Name="_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" />
+    <Property Name="surname" Type="nvarchar" MaxLength="50" />
+    <Property Name="company" Type="nvarchar" MaxLength="100" />
+    <Property Name="phone" Type="nvarchar" MaxLength="20" />
+    <Property Name="mail" Type="nvarchar" MaxLength="50" />
+    <Property Name="site" Type="nvarchar" MaxLength="50" />
+    <Property Name="note" Type="text" />
+    <Property Name="status" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="teamDB">
+    <Key>
+      <PropertyRef Name="_id" />
+    </Key>
+    <Property Name="_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="100" />
+    <Property Name="surname" Type="nvarchar" MaxLength="100" />
+    <Property Name="post" Type="nvarchar" MaxLength="20" />
+    <Property Name="age" Type="int" />
+    <Property Name="department" Type="nvarchar" MaxLength="50" />
+    <Property Name="login" Type="nvarchar" MaxLength="50" />
+    <Property Name="password" Type="nvarchar" MaxLength="50" />
+    <Property Name="role" Type="int" />
+    <Property Name="adress" Type="nvarchar" MaxLength="100" />
+    <Property Name="phone" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <Association Name="FK_DVDsDB_sellersDB">
+    <End Role="sellersDB" Type="Self.sellersDB" Multiplicity="0..1" />
+    <End Role="DVDsDB" Type="Self.DVDsDB" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="sellersDB">
+        <PropertyRef Name="_id" />
+      </Principal>
+      <Dependent Role="DVDsDB">
+        <PropertyRef Name="seller" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище appDVDsModelContainer">
+    <EntitySet Name="DVDsDB" EntityType="Self.DVDsDB" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sellersDB" EntityType="Self.sellersDB" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="teamDB" EntityType="Self.teamDB" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_DVDsDB_sellersDB" Association="Self.FK_DVDsDB_sellersDB">
+      <End Role="sellersDB" EntitySet="sellersDB" />
+      <End Role="DVDsDB" EntitySet="DVDsDB" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

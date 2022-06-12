@@ -1,0 +1,169 @@
+﻿<Page x:Class="shop_DVDs.view.page.teamShowPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:shop_DVDs.view.page" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="teamShowPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="49*"/>
+            <RowDefinition Height="176*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Name="top">
+            <DockPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                
+                <TextBlock Text="Сотрудник: "
+                           FontSize="30"
+                           Margin="10 0 10 0"
+                           />
+                <TextBlock Text="{Binding Path=surname}" FontSize="30"
+                           Foreground="#673AB7" Margin="0 0 10 0"/>
+                <TextBlock Text="{Binding Path=name}" FontSize="30"
+                           Foreground="#673AB7" />
+            </DockPanel>
+            <Border Width="50"
+                    CornerRadius="20"
+                    Height="50"
+                    HorizontalAlignment="Right"
+                    Margin="0 0 50 0">
+                <Border.Background>
+                    <LinearGradientBrush>
+                        <GradientStop Color="#673AB7" Offset="0"/>
+                        <GradientStop Color="#318CE7" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+                <TextBlock HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Text="{Binding Path=C_id}"
+                           Foreground="#fff"
+                           FontSize="30"/>
+            </Border>
+        </Grid>
+
+        <Grid Name="contet" Grid.Row="1">
+            <Border CornerRadius="20">
+                <materialDesign:Card Margin="10 0 0 100">
+                    <StackPanel Margin="10">
+
+                        <DockPanel Margin="0 0 0 10">
+                            <TextBlock HorizontalAlignment="Left"
+                                           Text="Должность:" FontSize="18"/>
+                            <TextBlock HorizontalAlignment="Right"
+                                           Text="{Binding Path=post}" FontSize="18" FontWeight="Bold"
+                                           Foreground="#673AB7"/>
+                        </DockPanel>
+
+                        <DockPanel Margin="0 0 0 10">
+                            <TextBlock HorizontalAlignment="Left"
+                                           Text="Возраст:" FontSize="18"/>
+                            <TextBlock HorizontalAlignment="Right"
+                                           Text="{Binding Path=age}" FontSize="18" FontWeight="Bold"
+                                           Foreground="#673AB7"/>
+                        </DockPanel>
+
+                        <DockPanel Margin="0 0 0 10">
+                            <TextBlock HorizontalAlignment="Left"
+                                           Text="Отдел:" FontSize="18"/>
+                            <TextBlock HorizontalAlignment="Right"
+                                           Text="{Binding Path=department}" FontSize="18" FontWeight="Bold"
+                                           Foreground="#673AB7"/>
+                        </DockPanel>
+
+                        <DockPanel Margin="0 0 0 10">
+                            <TextBlock HorizontalAlignment="Left"
+                                           Text="Уровень доступа:" FontSize="18"/>
+                            <TextBlock HorizontalAlignment="Right"
+                                           Text="{Binding Path=role}" FontSize="18" FontWeight="Bold"
+                                           Foreground="#673AB7"/>
+                        </DockPanel>
+
+                        <DockPanel Margin="0 0 0 10">
+                            <TextBlock HorizontalAlignment="Left"
+                                           Text="Телефон:" FontSize="18"/>
+                            <TextBlock HorizontalAlignment="Right"
+                                           Text="{Binding Path=phone}" FontSize="18" FontWeight="Bold"
+                                           Foreground="#673AB7"/>
+                        </DockPanel>
+
+                        <DockPanel Margin="0 0 0 10">
+                            <TextBlock HorizontalAlignment="Left"
+                                           Text="Адрес:" FontSize="18"/>
+                            <TextBlock HorizontalAlignment="Right"
+                                           Text="{Binding Path=adress}" FontSize="18" FontWeight="Bold"
+                                           Foreground="#673AB7"/>
+                        </DockPanel>
+
+                    </StackPanel>
+                </materialDesign:Card>
+            </Border>
+        </Grid>
+        <StackPanel Grid.Row="1"
+                    HorizontalAlignment="Left" VerticalAlignment="Bottom">
+            <DockPanel>
+                <Button VerticalAlignment="Bottom"
+                        Grid.Row="1"
+                        HorizontalAlignment="Left" 
+                        Margin="10"
+                        Name="back"
+                        Click="back_Click"
+                        Style="{DynamicResource MaterialDesignPaperButton}">
+                    <StackPanel>
+                        <DockPanel>
+                            <materialDesign:PackIcon VerticalAlignment="Center"
+                                                     HorizontalAlignment="Center"
+                                                     Kind="Backburger"/>
+                            <TextBlock Text="Назад" VerticalAlignment="Center"
+                                               HorizontalAlignment="Center"/>
+                        </DockPanel>
+                    </StackPanel>
+                </Button>
+                <Button VerticalAlignment="Bottom"
+                        HorizontalAlignment="Left" 
+                        Margin="10"
+                        Name="edit"
+                        Click="edit_Click"
+                        Style="{DynamicResource MaterialDesignPaperButton}"
+                        >
+                    <StackPanel>
+                        <DockPanel>
+                            <materialDesign:PackIcon VerticalAlignment="Center"
+                                             HorizontalAlignment="Center"
+                                             Kind="Edit"/>
+                            <TextBlock Text="Редактировать" VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"/>
+                        </DockPanel>
+                    </StackPanel>
+                </Button>
+
+                <Button VerticalAlignment="Bottom"
+                        HorizontalAlignment="Left" 
+                        Margin="10"
+                        Name="remove"
+                        Click="remove_Click"
+                        Style="{DynamicResource MaterialDesignPaperButton}"
+                        >
+                    <StackPanel>
+                        <DockPanel>
+                            <materialDesign:PackIcon VerticalAlignment="Center"
+                                             HorizontalAlignment="Center"
+                                             Kind="Remove"/>
+                            <TextBlock Text="Удалить" VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"/>
+                        </DockPanel>
+                    </StackPanel>
+                </Button>
+
+            </DockPanel>
+        </StackPanel>
+
+    </Grid>
+</Page>
+
+<!--
+b64->QGRpc29vbG9v
+-->

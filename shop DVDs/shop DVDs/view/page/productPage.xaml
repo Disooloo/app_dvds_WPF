@@ -1,0 +1,88 @@
+﻿<Page x:Class="shop_DVDs.view.page.productPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:shop_DVDs.view.page" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      IsVisibleChanged="Page_IsVisibleChanged"
+      Title="productPage">
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="19*"/>
+            <RowDefinition Height="71*"/>
+        </Grid.RowDefinitions>
+        <Grid Name="top">
+            <TextBlock Text="DvD диски" FontSize="50"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center" Margin="20 0 0 0"
+                       Style="{StaticResource MaterialDesignBody1TextBlock}"
+                       Foreground="#673AB7"/>
+            <Button HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    Name="storeProduct"
+                    Click="storeProduct_Click"
+                    Margin="0 0 20 0">
+                <StackPanel Orientation="Horizontal">
+                    <materialDesign:PackIcon Kind="Plus" 
+                                         VerticalAlignment="Center"
+                                         HorizontalAlignment="Center"/>
+                    <TextBlock Text="Добавить диск" HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               Margin="5 0 0 5"/>
+                   
+                </StackPanel>
+            </Button>
+
+
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center" VerticalAlignment="Center">
+                <StackPanel Orientation="Horizontal">
+                    <DockPanel>
+                        <TextBlock Text="Всего в наличии: " FontSize="18"
+                                   Style="{StaticResource MaterialDesignBody1TextBlock}"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <TextBlock Text="" Name="countItem" FontSize="18" Margin="5 0 0 0" Foreground="#673AB7"
+                                   Style="{StaticResource MaterialDesignBody1TextBlock}"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"
+                                   FontWeight="Bold"/>
+                    </DockPanel>
+                </StackPanel>
+
+            </StackPanel>
+
+
+        </Grid>
+        <Grid Name="grid" Grid.Row="1">
+            <Border CornerRadius="20" Margin="10">
+                <DataGrid Name="DGrid" AutoGenerateColumns="False" 
+                  ScrollViewer.CanContentScroll="True" 
+                  ScrollViewer.VerticalScrollBarVisibility="Auto"
+                  ScrollViewer.HorizontalScrollBarVisibility="Auto">
+
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Наименование" Width="*" Binding="{Binding Path=title}"/>
+                        <DataGridTextColumn Header="Категория" Width="*" Binding="{Binding Path=category}"/>
+                        <DataGridTextColumn Header="Поставщик" Width="*" Binding="{Binding Path=seller}"/>
+                        <DataGridTextColumn Header="Цена" Width="*" Binding="{Binding Path=price}"/>
+                        <DataGridTextColumn Header="Кол-во в наличии" Width="*" Binding="{Binding Path=inStock}"/>
+                        <DataGridTemplateColumn>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Content="Подробнее" Name="showProduct" Click="showProduct_Click"></Button>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Border>
+        </Grid>
+    </Grid>
+    
+</Page>
+
+<!--
+b64->QGRpc29vbG9v
+-->
